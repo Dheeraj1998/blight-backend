@@ -1,0 +1,179 @@
+Notebook[{Cell[
+CellGroupData[{Cell[
+TextData[{"Weather"," ","data"," ","API"}],"Title",
+CellLabel->"In[63]:= ",ExpressionUUID->"91fa9fef-10a0-47e8-b1ac-ba5f9684f583"],Cell[
+TextData[
+{StyleBox["Current",FontColor->RGBColor[0,0,1]],StyleBox[" ",FontColor->RGBColor[
+0,0,1]],StyleBox["weather",FontColor->RGBColor[0,0,1]],StyleBox[" ",FontColor->RGBColor[
+0,0,1]],StyleBox["conditions",FontColor->RGBColor[0,0,1]]}],"Subtitle",ExpressionUUID->"444858af-4f15-4c9a-bd36-9425deff9c0b"],Cell[
+CellGroupData[
+{Cell[
+TextData[{StyleBox[StyleBox["The",FontColor->RGBColor[1,0.5019607843137255`,
+0]],FontSize->20],StyleBox[StyleBox[" ",FontColor->RGBColor[1,0.5019607843137255`,
+0]],FontSize->20],StyleBox[StyleBox["weather",FontColor->RGBColor[1,0.5019607843137255`,
+0]],FontSize->20],StyleBox[StyleBox[" ",FontColor->RGBColor[1,0.5019607843137255`,
+0]],FontSize->20],StyleBox[StyleBox["conditions",FontColor->RGBColor[1,0.5019607843137255`,
+0]],FontSize->20],StyleBox[StyleBox[" ",FontColor->RGBColor[1,0.5019607843137255`,
+0]],FontSize->20],StyleBox[StyleBox["include",FontColor->RGBColor[1,0.5019607843137255`,
+0]],FontSize->20],StyleBox[StyleBox[" ",FontColor->RGBColor[1,0.5019607843137255`,
+0]],FontSize->20],StyleBox[StyleBox[StyleBox[StyleBox["temperature",FontColor->RGBColor[
+1,0.5019607843137255`,0]],FontSize->20],FontSlant->Plain],FontWeight->Bold],StyleBox[
+RowBox[{StyleBox[StyleBox[",",FontColor->RGBColor[1,0.5019607843137255`,0]],FontSize->20],StyleBox[
+StyleBox[" ",FontColor->RGBColor[1,0.5019607843137255`,0]],FontSize->20]}]],StyleBox[
+StyleBox[StyleBox["pressure",FontColor->RGBColor[1,0.5019607843137255`,0]],FontSize->20],
+FontWeight->Bold],StyleBox[RowBox[{StyleBox[StyleBox[",",FontColor->RGBColor[1,0.5019607843137255`,
+0]],FontSize->20],StyleBox[StyleBox[" ",FontColor->RGBColor[1,0.5019607843137255`,
+0]],FontSize->20]}]],StyleBox[StyleBox[StyleBox["humidity",FontColor->RGBColor[1,
+0.5019607843137255`,0]],FontSize->20],FontWeight->Bold],StyleBox[RowBox[{StyleBox[
+StyleBox[",",FontColor->RGBColor[1,0.5019607843137255`,0]],FontSize->20],StyleBox[
+StyleBox[" ",FontColor->RGBColor[1,0.5019607843137255`,0]],FontSize->20]}]],StyleBox[
+StyleBox[StyleBox["visibility",FontColor->RGBColor[1,0.5019607843137255`,0]],FontSize->20],
+FontWeight->Bold],StyleBox[StyleBox[" ",FontColor->RGBColor[1,0.5019607843137255`,
+0]],FontSize->20],StyleBox[StyleBox["and",FontColor->RGBColor[1,0.5019607843137255`,
+0]],FontSize->20],StyleBox[StyleBox[" ",FontColor->RGBColor[1,0.5019607843137255`,
+0]],FontSize->20],StyleBox[StyleBox[StyleBox["wind",FontColor->RGBColor[1,0.5019607843137255`,
+0]],FontSize->20],FontWeight->Bold],StyleBox[StyleBox[StyleBox[" ",FontColor->RGBColor[
+1,0.5019607843137255`,0]],FontSize->20],FontWeight->Bold],StyleBox[StyleBox[StyleBox[
+"speed",FontColor->RGBColor[1,0.5019607843137255`,0]],FontSize->20],FontWeight->Bold],StyleBox[
+StyleBox[".",FontColor->RGBColor[1,0.5019607843137255`,0]],FontSize->20]}],"Subtitle",
+ExpressionUUID->"8d7612a4-9dbf-42ff-8a46-2b1e1ebebc22"],Cell[
+CellGroupData[{Cell[
+BoxData[
+{RowBox[{RowBox[{"func"," ","="," ",RowBox[{"APIFunction","[",RowBox[{RowBox[{"{",RowBox[
+{"\"a\""," ","\[Rule]"," ","\"String\""}],"}"}],","," ",RowBox[{RowBox[{"WeatherData","[",RowBox[
+{"#a",","," ","\"Temperature\""}],"]"}]," ","&"}],","," ","\"String\""}],"]"}]}],";"}],"\n",RowBox[
+{"api"," ","="," ",RowBox[{"CloudDeploy","[","func","]"}]}]}],"Input",ExpressionUUID->"2b40806f-d134-4737-9730-58a5c1edfea3",
+CellLabel->"In[3]:= "],Cell[
+BoxData[TagBox[InterpretationBox[RowBox[{"CloudObject","[",TemplateBox[
+{"\"https://www.wolframcloud.com/objects/c79af75c-88cc-4f7b-b0b6-1714d28dba1b\"","https://www.wolframcloud.com/objects/c79af75c-88cc-4f7b-b0b6-1714d28dba1b"},
+"HyperlinkURL"],"]"}],CloudObject["https://www.wolframcloud.com/objects/c79af75c-88cc-4f7b-b0b6-1714d28dba1b"]],
+"RawBoxes"],StandardForm],"Output",ExpressionUUID->"32c490e7-3a57-4ae2-a034-2538a207c532",
+CellLabel->"Out[4]= "]},Open],ExpressionUUID->"e14c65ad-285e-4da7-87f3-aae82b20a4ba"],Cell[
+CellGroupData[
+{Cell[
+BoxData[{RowBox[{RowBox[{"func"," ","="," ",RowBox[{"APIFunction","[",RowBox[
+{RowBox[{"{",RowBox[{"\"b\""," ","\[Rule]"," ","\"String\""}],"}"}],","," ",RowBox[
+{RowBox[{"WeatherData","[",RowBox[{"#b",","," ","\"Pressure\""}],"]"}]," ","&"}],","," ","\"String\""}],"]"}]}],";"}],"\n",RowBox[
+{"api"," ","="," ",RowBox[{"CloudDeploy","[","func","]"}]}]}],"Input",ExpressionUUID->"19f561c7-98a3-426a-a5b2-cc88f88b8efa",
+CellLabel->"In[5]:= "],Cell[
+BoxData[TagBox[InterpretationBox[RowBox[{"CloudObject","[",TemplateBox[
+{"\"https://www.wolframcloud.com/objects/e527d12f-1988-4115-98d8-211da3195246\"","https://www.wolframcloud.com/objects/e527d12f-1988-4115-98d8-211da3195246"},
+"HyperlinkURL"],"]"}],CloudObject["https://www.wolframcloud.com/objects/e527d12f-1988-4115-98d8-211da3195246"]],
+"RawBoxes"],StandardForm],"Output",ExpressionUUID->"123abe0c-4ed6-402d-8262-78bdbde8b2c4",
+CellLabel->"Out[6]= "]},Open],ExpressionUUID->"562f74ec-1d51-43b9-a313-04ffe1b52e98"],Cell[
+CellGroupData[
+{Cell[
+BoxData[{RowBox[{RowBox[{"func"," ","="," ",RowBox[{"APIFunction","[",RowBox[
+{RowBox[{"{",RowBox[{"\"c\""," ","\[Rule]"," ","\"String\""}],"}"}],","," ",RowBox[
+{RowBox[{"WeatherData","[",RowBox[{"#c",","," ","\"Humidity\""}],"]"}]," ","&"}],","," ","\"String\""}],"]"}]}],";"}],"\n",RowBox[
+{"api"," ","="," ",RowBox[{"CloudDeploy","[","func","]"}]}]}],"Input",ExpressionUUID->"f7e3ceaf-297f-4160-a9d7-461d1ba3f151",
+CellLabel->"In[7]:= "],Cell[
+BoxData[TagBox[InterpretationBox[RowBox[{"CloudObject","[",TemplateBox[
+{"\"https://www.wolframcloud.com/objects/c2921ccf-7560-4b4e-8a14-7d4c95243f26\"","https://www.wolframcloud.com/objects/c2921ccf-7560-4b4e-8a14-7d4c95243f26"},
+"HyperlinkURL"],"]"}],CloudObject["https://www.wolframcloud.com/objects/c2921ccf-7560-4b4e-8a14-7d4c95243f26"]],
+"RawBoxes"],StandardForm],"Output",ExpressionUUID->"205f31f1-1559-4464-8df9-6339a8af5450",
+CellLabel->"Out[8]= "]},Open],ExpressionUUID->"a0371692-a89a-48c5-9432-fd06fb8d8ec2"],Cell[
+CellGroupData[
+{Cell[
+BoxData[{RowBox[{RowBox[{"func"," ","="," ",RowBox[{"APIFunction","[",RowBox[
+{RowBox[{"{",RowBox[{"\"d\""," ","\[Rule]"," ","\"String\""}],"}"}],","," ",RowBox[
+{RowBox[{"WeatherData","[",RowBox[{"#d",","," ","\"Visibility\""}],"]"}]," ","&"}],","," ","\"String\""}],"]"}]}],";"}],"\n",RowBox[
+{"api"," ","="," ",RowBox[{"CloudDeploy","[","func","]"}]}]}],"Input",ExpressionUUID->"ae22ca6a-19f7-44d3-9447-91fa8ff58c39",
+CellLabel->"In[9]:= "],Cell[
+BoxData[TagBox[InterpretationBox[RowBox[{"CloudObject","[",TemplateBox[
+{"\"https://www.wolframcloud.com/objects/c77e3f2f-80a2-4005-b85a-f371a229e957\"","https://www.wolframcloud.com/objects/c77e3f2f-80a2-4005-b85a-f371a229e957"},
+"HyperlinkURL"],"]"}],CloudObject["https://www.wolframcloud.com/objects/c77e3f2f-80a2-4005-b85a-f371a229e957"]],
+"RawBoxes"],StandardForm],"Output",ExpressionUUID->"87288656-3b62-4a83-939b-2c6e825699bc",
+CellLabel->"Out[10]= "]},Open],ExpressionUUID->"5d08c1d1-847b-49ac-a1ab-79735d2f1a16"],Cell[
+CellGroupData[
+{Cell[
+BoxData[{RowBox[{RowBox[{"func"," ","="," ",RowBox[{"APIFunction","[",RowBox[
+{RowBox[{"{",RowBox[{"\"e\""," ","\[Rule]"," ","\"String\""}],"}"}],","," ",RowBox[
+{RowBox[{"WeatherData","[",RowBox[{"#e",","," ","\"WindSpeed\""}],"]"}]," ","&"}],","," ","\"String\""}],"]"}]}],";"}],"\n",RowBox[
+{"api"," ","="," ",RowBox[{"CloudDeploy","[","func","]"}]}]}],"Input",ExpressionUUID->"a55d6928-36ec-456d-93ed-f87a704241a1",
+CellLabel->"In[11]:= "],Cell[
+BoxData[TagBox[InterpretationBox[RowBox[{"CloudObject","[",TemplateBox[
+{"\"https://www.wolframcloud.com/objects/f3ec8f1e-37f1-4dd4-b8e5-2215ddcfad1e\"","https://www.wolframcloud.com/objects/f3ec8f1e-37f1-4dd4-b8e5-2215ddcfad1e"},
+"HyperlinkURL"],"]"}],CloudObject["https://www.wolframcloud.com/objects/f3ec8f1e-37f1-4dd4-b8e5-2215ddcfad1e"]],
+"RawBoxes"],StandardForm],"Output",ExpressionUUID->"a5008578-c223-4aa9-a39d-4159fe77f091",
+CellLabel->"Out[12]= "]},Open],ExpressionUUID->"6290c34a-5aa9-469e-93f5-9ddcb5ba72bc"]},
+Open],ExpressionUUID->"2dc6455b-3cf8-489a-9dd7-a4c4aba8b74f"],Cell[
+CellGroupData[
+{Cell[
+TextData[{StyleBox["Checking",FontColor->RGBColor[0,0,1]],StyleBox[" ",FontColor->RGBColor[
+0,0,1]],StyleBox["the",FontColor->RGBColor[0,0,1]],StyleBox[" ",FontColor->RGBColor[
+0,0,1]],StyleBox["location",FontColor->RGBColor[0,0,1]],StyleBox[" ",FontColor->RGBColor[
+0,0,1]],StyleBox["for",FontColor->RGBColor[0,0,1]],StyleBox[" ",FontColor->RGBColor[
+0,0,1]],StyleBox["any",FontColor->RGBColor[0,0,1]],StyleBox[" ",FontColor->RGBColor[
+0,0,1]],StyleBox["previous",FontColor->RGBColor[0,0,1]],StyleBox[" ",FontColor->RGBColor[
+0,0,1]],StyleBox["earthquakes",FontColor->RGBColor[0,0,1]]}],"Subtitle",ExpressionUUID->"1d226552-70e1-4e4b-8338-f3126d5828d7"],Cell[
+CellGroupData[
+{Cell[
+BoxData[{RowBox[{RowBox[{"func"," ","="," ",RowBox[{"APIFunction","[",RowBox[
+{RowBox[{"{",RowBox[{RowBox[{"\"h\""," ","\[Rule]"," ","\"Integer\""}],","," ",RowBox[
+{"\"i\""," ","\[Rule]"," ","\"Integer\""}]}],"}"}],","," ",RowBox[{RowBox[{"EarthquakeData","[",RowBox[
+{"{",RowBox[{"#h",","," ","#i"}],"}"}],"]"}]," ","&"}],","," ","\"String\""}],"]"}]}],";"}],"\n",RowBox[
+{"api"," ","="," ",RowBox[{"CloudDeploy","[","func","]"}]}]}],"Input",ExpressionUUID->"acbf895a-d420-4995-92fc-7324b684b1a8",
+CellLabel->"In[13]:= "],Cell[
+BoxData[TagBox[InterpretationBox[RowBox[{"CloudObject","[",TemplateBox[
+{"\"https://www.wolframcloud.com/objects/1d8b87bc-1844-45f4-b939-0028186402af\"","https://www.wolframcloud.com/objects/1d8b87bc-1844-45f4-b939-0028186402af"},
+"HyperlinkURL"],"]"}],CloudObject["https://www.wolframcloud.com/objects/1d8b87bc-1844-45f4-b939-0028186402af"]],
+"RawBoxes"],StandardForm],"Output",ExpressionUUID->"4b9c7f0b-d6fa-4200-8def-dc86aed6638e",
+CellLabel->"Out[14]= "]},Open],ExpressionUUID->"a5d4f5f1-acd2-427b-a9f5-5faa23478055"]},
+Open],ExpressionUUID->"12044ee9-c1bf-4dc1-88e5-898fae72b9cf"],Cell[
+TextData[{StyleBox[
+"Forecast",FontColor->RGBColor[0,0,1]],StyleBox[" ",FontColor->RGBColor[0,0,1]],StyleBox[
+"weather",FontColor->RGBColor[0,0,1]],StyleBox[" ",FontColor->RGBColor[0,0,1]],StyleBox[
+"conditions",FontColor->RGBColor[0,0,1]]}],"Subtitle",ExpressionUUID->"2c09b5c4-b98b-4859-886a-aa9336ef9bd4"],Cell[
+CellGroupData[
+{Cell[
+TextData[{StyleBox[StyleBox["The",FontColor->RGBColor[0.9607843137254902`,
+0.6509803921568628`,0.13725490196078433`]],FontSize->20],StyleBox[StyleBox[" ",FontColor->RGBColor[
+0.9607843137254902`,0.6509803921568628`,0.13725490196078433`]],FontSize->20],StyleBox[
+StyleBox["weather",FontColor->RGBColor[0.9607843137254902`,0.6509803921568628`,0.13725490196078433`]],
+FontSize->20],StyleBox[StyleBox[" ",FontColor->RGBColor[0.9607843137254902`,0.6509803921568628`,
+0.13725490196078433`]],FontSize->20],StyleBox[StyleBox["conditions",FontColor->RGBColor[
+0.9607843137254902`,0.6509803921568628`,0.13725490196078433`]],FontSize->20],StyleBox[
+StyleBox[" ",FontColor->RGBColor[0.9607843137254902`,0.6509803921568628`,0.13725490196078433`]],
+FontSize->20],StyleBox[StyleBox["include",FontColor->RGBColor[0.9607843137254902`,
+0.6509803921568628`,0.13725490196078433`]],FontSize->20],StyleBox[StyleBox[" ",FontColor->RGBColor[
+0.9607843137254902`,0.6509803921568628`,0.13725490196078433`]],FontSize->20],StyleBox[
+StyleBox[StyleBox["temperature",FontWeight->Bold],FontColor->RGBColor[0.9607843137254902`,
+0.6509803921568628`,0.13725490196078433`]],FontSize->20],StyleBox[StyleBox[StyleBox[
+" ",FontWeight->Bold],FontColor->RGBColor[0.9607843137254902`,0.6509803921568628`,
+0.13725490196078433`]],FontSize->20],StyleBox[StyleBox[StyleBox["and",FontWeight->Plain],
+FontColor->RGBColor[0.9607843137254902`,0.6509803921568628`,0.13725490196078433`]],
+FontSize->20],StyleBox[StyleBox[StyleBox[" ",FontWeight->Plain],FontColor->RGBColor[
+0.9607843137254902`,0.6509803921568628`,0.13725490196078433`]],FontSize->20],StyleBox[
+StyleBox[StyleBox["pressure",FontWeight->Bold],FontColor->RGBColor[0.9607843137254902`,
+0.6509803921568628`,0.13725490196078433`]],FontSize->20],StyleBox[StyleBox[StyleBox[
+".",FontWeight->Plain],FontColor->RGBColor[0.9607843137254902`,0.6509803921568628`,
+0.13725490196078433`]],FontSize->20]}],"Subtitle",ExpressionUUID->"1d0bd1d9-29d8-4c60-aaef-ba3c3895a2e3"],Cell[
+CellGroupData[
+{Cell[
+BoxData[{RowBox[{RowBox[{"func"," ","="," ",RowBox[{"APIFunction","[",RowBox[
+{RowBox[{"{",RowBox[{"\"f\""," ","\[Rule]"," ","\"String\""}],"}"}],","," ",RowBox[
+{RowBox[{RowBox[{"WeatherForecastData","[",RowBox[{RowBox[{"CityData","[","#f","]"}],","," ","\"MeanTemperature\"",","," ",RowBox[
+{"UnitSystem"," ","\[Rule]","\"Metric\""}]}],"]"}],"[","\"Values\"","]"}]," ","&"}]}],"]"}]}],";"}],"\n",RowBox[
+{RowBox[{"api"," ","="," ",RowBox[{"CloudDeploy","[","func","]"}]}],"\n"}]}],"Input",
+ExpressionUUID->"65cebe1e-b99b-4143-81cd-663ea63beea0",CellLabel->"In[15]:= "],Cell[
+BoxData[
+TagBox[InterpretationBox[RowBox[{"CloudObject","[",TemplateBox[{"\"https://www.wolframcloud.com/objects/a086a1b4-cdac-47d5-8b20-2853c44556b3\"","https://www.wolframcloud.com/objects/a086a1b4-cdac-47d5-8b20-2853c44556b3"},
+"HyperlinkURL"],"]"}],CloudObject["https://www.wolframcloud.com/objects/a086a1b4-cdac-47d5-8b20-2853c44556b3"]],
+"RawBoxes"],StandardForm],"Output",ExpressionUUID->"70175d1b-7264-4f9c-a887-3745ebd3efa5",
+CellLabel->"Out[16]= "]},Open],ExpressionUUID->"e4e58441-0f77-4d8a-9b75-b73a64085f3b"],Cell[
+CellGroupData[
+{Cell[
+BoxData[{RowBox[{RowBox[{"func"," ","="," ",RowBox[{"APIFunction","[",RowBox[
+{RowBox[{"{",RowBox[{"\"g\""," ","\[Rule]"," ","\"String\""}],"}"}],","," ",RowBox[
+{RowBox[{RowBox[{"WeatherForecastData","[",RowBox[{RowBox[{"CityData","[","#g","]"}],","," ","\"MeanPressure\"",","," ",RowBox[
+{"UnitSystem"," ","\[Rule]","\"Metric\""}]}],"]"}],"[","\"Values\"","]"}]," ","&"}]}],"]"}]}],";"}],"\n",RowBox[
+{RowBox[{"api"," ","="," ",RowBox[{"CloudDeploy","[","func","]"}]}],"\n"}]}],"Input",
+ExpressionUUID->"2cfca696-4807-429b-be24-25ae45f816f9",CellLabel->"In[17]:= "],Cell[
+BoxData[
+TagBox[InterpretationBox[RowBox[{"CloudObject","[",TemplateBox[{"\"https://www.wolframcloud.com/objects/2f9c2558-9e07-494b-9220-a0e696a1bde6\"","https://www.wolframcloud.com/objects/2f9c2558-9e07-494b-9220-a0e696a1bde6"},
+"HyperlinkURL"],"]"}],CloudObject["https://www.wolframcloud.com/objects/2f9c2558-9e07-494b-9220-a0e696a1bde6"]],
+"RawBoxes"],StandardForm],"Output",ExpressionUUID->"2de5bde2-d5d2-43c5-9935-1f2e150cd427",
+CellLabel->"Out[18]= "]},Open],ExpressionUUID->"212408b2-2c3d-4fd2-afbf-5d83b0cc837f"]},
+Open],ExpressionUUID->"36ffd07e-dbe4-4204-b50a-e7cf4780043c"]},Open],ExpressionUUID->"4f42d975-23a3-400a-a9b0-2cb88971df5d"]},
+StyleDefinitions->"Default.nb",FrontEndVersion->"11.3 for Wolfram Cloud 1.45 (March 12, 2018)"]
