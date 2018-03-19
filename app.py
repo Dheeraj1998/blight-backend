@@ -131,6 +131,5 @@ if __name__ == "__main__":
 
 # Starting the scheduler with the required job
 task_scheduler = BackgroundScheduler(daemon=True)
-task_scheduler.add_job(check_disaster, 'interval', seconds=10)
 task_scheduler.add_job(retrieve_data, 'interval', seconds=10000)
 task_scheduler.start()
