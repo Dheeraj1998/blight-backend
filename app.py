@@ -1,34 +1,62 @@
 # Initial setup
 
 import json
+import pyrebase
+import random
 import requests
 
 from apscheduler.schedulers.background import BackgroundScheduler
 from flask import Flask, request
 from pyfcm import FCMNotification
 
-# Defining the server key
-push_service = FCMNotification(api_key="AAAAI6Yezgk:APA91bHTgkp5RKolA8Fb2VzYZjCt5z8iadT6dmRUzAVhzqWngXiFtHLu__spT82XXXy9vstzBixnzuG0Rgtuyf6hsCBywd6fpYXpsI5Gma6t9vfdyIkEA9b4UtBc4SRg1w6IBmKmwBFk")
+# Firebase configuration
+config = {
+    "apiKey": "AIzaSyBbGWcyla5IKW8s6M7IRhne2d02QzGOYmw",
+    "authDomain": "blight-c675c.firebaseapp.com",
+    "databaseURL": "https://blight-c675c.firebaseio.com",
+    "storageBucket": "blight-c675c.appspot.com",
+}
+firebase = pyrebase.initialize_app(config)
+db = firebase.database()
 
-# Function for checking any disaster
-def check_disaster():
-	api_key = '3rRLEdKYJZYfSA0nvMftbmf4wJSUzL8J'
-	disaster_url = 'http://dataservice.accuweather.com/alarms/v1/1day/190975?apikey=' + api_key
-
-	disaster_response = requests.get(disaster_url)
-	
-	if (disaster_response.text != '[]'):
-		print('There is an emergency.')
-		
-	return len(disaster_response.text)
-	
-# Starting the scheduler with the required job
-task_scheduler = BackgroundScheduler(daemon=True)
-task_scheduler.add_job(check_disaster, 'interval', minutes=10)
-task_scheduler.start()
+# Keep sample_data = 1 if you want to check alerts with sample data
+global sample_data
+sample_data = 1
 
 # Flask object creation
 app = Flask(__name__)
+
+# Check disaster page
+@app.route("/check_disaster")
+
+# Function for checking any disaster
+def check_disaster():
+	# Defining the server key
+	push_service = FCMNotification(api_key="AAAAQphrR20:APA91bEUrVu2ErYDuUPYcBdwBoBTAAICi6BTT9mRQXFwacQRJJznB2ma9gXgeVKJa4esADzrIDgGwX4wOdG5ZRwhCzdevPCJuxoPcoM8VVn59km1lvpKJfCQKFWke95A3K1abuIX-_o_")
+
+	if(sample_data == 1):
+		registration_id ="f19SnmsLYLg:APA91bG85r4LKMxkjVBv42soeQxY3yoPb7l1x4I1ZFpcVat5_6Or3Epk7h4NIxu3BszxajdZc7igbbMjiuBjHMp3muBEuzDZDhzriUrdI9R_1H5lT86vBmhzSqJX8RbcJWHRG2yElqX2"
+		message_title = random.choice(["ETH: Earthquake Alert", "FLD: Flood Alert", "FOT: Forest Fire Alert", "TND: Thunderstorm Alert"])
+		message_body = "Alert has been issued in your area. Stay careful!"
+		result = push_service.notify_single_device(registration_id=registration_id, message_title=message_title, message_body=message_body)
+	
+	return 'The alert has been sent.'
+# Function for retrieving the details from Firebase
+def retrieve_data():
+	users = db.child("users").get()
+	locations = {}
+	
+	for value in users.each():
+		temp_array = []
+		key_value = value.val()['location']
+		try:
+			temp_array = locations[key_value]
+			temp_array.append(value.val()['device_token'])
+		except:
+			temp_array = [value.val()['device_token']]
+		locations[key_value] = temp_array
+		
+	db.child("locations").set(locations)
 
 # Index page
 @app.route("/")
@@ -42,7 +70,6 @@ def index():
 @app.route("/query", methods = ["GET"])
 
 def query():
-	
 	location = request.args.get('location').lower()
 	
 	temperature_url = 'https://www.wolframcloud.com/objects/2fd9ef4c-bad7-4a1e-911b-1612268870a2?a=' + location
@@ -101,3 +128,9 @@ def page_not_found(e):
 if __name__ == "__main__":
 	app.debug = True
 	app.run()
+
+# Starting the scheduler with the required job
+task_scheduler = BackgroundScheduler(daemon=True)
+task_scheduler.add_job(check_disaster, 'interval', seconds=10)
+task_scheduler.add_job(retrieve_data, 'interval', seconds=10000)
+task_scheduler.start()
