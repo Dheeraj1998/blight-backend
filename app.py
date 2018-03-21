@@ -35,12 +35,52 @@ def check_disaster():
 	push_service = FCMNotification(api_key="AAAAQphrR20:APA91bEUrVu2ErYDuUPYcBdwBoBTAAICi6BTT9mRQXFwacQRJJznB2ma9gXgeVKJa4esADzrIDgGwX4wOdG5ZRwhCzdevPCJuxoPcoM8VVn59km1lvpKJfCQKFWke95A3K1abuIX-_o_")
 
 	if(sample_data == 1):
-		registration_id ="f19SnmsLYLg:APA91bG85r4LKMxkjVBv42soeQxY3yoPb7l1x4I1ZFpcVat5_6Or3Epk7h4NIxu3BszxajdZc7igbbMjiuBjHMp3muBEuzDZDhzriUrdI9R_1H5lT86vBmhzSqJX8RbcJWHRG2yElqX2"
+		fcm_ids = []
+	
+		# Selection of Vellore as the location in this sample case
+		selected_city = 'Vellore'
+		all_users = db.child("locations").child(selected_city).get()
+		
+		# Extraction of FCM ids for the particular area
+		for user in all_users.each():
+			fcm_ids.append(user.val())
+			
+		# Sending the message to multiple devices
 		message_title = random.choice(["ETH: Earthquake Alert", "FLD: Flood Alert", "FOT: Forest Fire Alert", "TND: Thunderstorm Alert"])
 		message_body = "Alert has been issued in your area. Stay careful!"
-		result = push_service.notify_single_device(registration_id=registration_id, message_title=message_title, message_body=message_body)
 	
-	return 'The alert has been sent.'
+		push_service.notify_multiple_devices(registration_ids=fcm_ids, message_title=message_title, message_body=message_body)
+		
+		return 'The alert has been sent.'
+	
+	elif(sample_data == 0):
+		api_key = 'wCZcX0UM9VQCyDHz1neUkcOdv5g5IyX0'
+		#api_key = 'WUDCNIeqK4DxaaWl1ekL9zwP4Cn0ZElI'
+		#api_key = '3rRLEdKYJZYfSA0nvMftbmf4wJSUzL8J'
+		
+		selected_city = 'Vellore'
+		location_lookup_url = 'http://dataservice.accuweather.com/locations/v1/cities/search?apikey=' + api_key + '&q=' + location_name
+
+		# Coverting the response text to JSON format and finding the location key
+		lookup_response = requests.get(location_lookup_url).text
+		lookup_response = json.loads(lookup_response)
+		location_key = lookup_response[0]["Key"]
+	
+		disaster_url = 'http://dataservice.accuweather.com/alarms/v1/1day/' + location_key + '?apikey=' + api_key
+		disaster_response = requests.get(disaster_url)
+	
+		all_users = db.child("locations").child(selected_city).get()
+		
+		fcm_ids = []
+		for user in all_users.each():
+			fcm_ids.append(user.val())
+	
+		if (disaster_response != '[]'):
+			message_title = "EMA: Earthquake Alert"
+			message_body = "Alert has been issued in your area. Stay careful!"
+			push_service.notify_multiple_devices(registration_ids=fcm_ids, message_title=message_title, message_body=message_body)
+			
+		return 'The alert has been sent.'
 # Function for retrieving the details from Firebase
 def retrieve_data():
 	users = db.child("users").get()
