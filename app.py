@@ -112,11 +112,11 @@ def index():
 def query():
 	location = request.args.get('location').lower()
 	
-	temperature_url = 'https://www.wolframcloud.com/objects/2fd9ef4c-bad7-4a1e-911b-1612268870a2?a=' + location
-	pressure_url = 'https://www.wolframcloud.com/objects/b06e46ec-6771-419c-9131-a95aa4da6bf1?b=' + location
-	humidity_url = 'https://www.wolframcloud.com/objects/118560e8-ed93-4dcc-8ae5-4ebef9e92269?c=' + location
-	visibility_url = 'https://www.wolframcloud.com/objects/23efd16a-2010-476e-ae56-6a756f6d1a73?d=' + location
-	windspeed_url = 'https://www.wolframcloud.com/objects/adb4d8d1-c5d4-4ace-adb9-9379e25ed252?e=' + location
+	temperature_url = 'https://www.wolframcloud.com/objects/b68ac476-0ef9-4721-952e-a853e6c5ebdf?a=' + location
+	pressure_url = 'https://www.wolframcloud.com/objects/bd7c282b-ad1e-48a9-8688-fafdd6e946cf?b=' + location
+	humidity_url = 'https://www.wolframcloud.com/objects/541161bf-270a-4680-b9e3-fa04bef25e6c?c=' + location
+	visibility_url = 'https://www.wolframcloud.com/objects/45cb3295-9423-479c-8d1a-273023107c55?d=' + location
+	windspeed_url = 'https://www.wolframcloud.com/objects/cabfa8b0-0213-45eb-ae1d-d29f5c8358d9?e=' + location
 
 	temp_response = requests.get(temperature_url)
 	pressure_response = requests.get(pressure_url)
@@ -131,8 +131,8 @@ def query():
 	wind_response = float(wind_response.text.split(" ")[0])
 	
 	# Extracing info from 
-	forecast_temp_url = 'https://www.wolframcloud.com/objects/2383eee0-e0b4-4eb5-b349-af0eda7ca348?f=' + location
-	forecast_pressure_url = 'https://www.wolframcloud.com/objects/bdf58b84-08bf-4cb5-9c78-6e647a8eac8f?g=' + location
+	forecast_temp_url = 'https://www.wolframcloud.com/objects/aa96736b-8971-4d37-9be7-2305a9e0a347?f=' + location
+	forecast_pressure_url = 'https://www.wolframcloud.com/objects/6fc18c5d-b4b6-42e8-9b55-6cbff043be7b?g=' + location
 	
 	forecast_temp_response = requests.get(forecast_temp_url).text[111:].split("}")[0]
 	forecast_temp_response = forecast_temp_response.split(",")
