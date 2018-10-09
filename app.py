@@ -26,17 +26,17 @@ sample_data = 1
 # Flask object creation
 app = Flask(__name__)
 
-# Check disaster page
+# Function for checking any disaster
 @app.route("/check_disaster")
 
-# Function for checking any disaster
 def check_disaster():
 	# Defining the server key
 	push_service = FCMNotification(api_key="AAAAQphrR20:APA91bEUrVu2ErYDuUPYcBdwBoBTAAICi6BTT9mRQXFwacQRJJznB2ma9gXgeVKJa4esADzrIDgGwX4wOdG5ZRwhCzdevPCJuxoPcoM8VVn59km1lvpKJfCQKFWke95A3K1abuIX-_o_")
 
 	if(sample_data == 1):
 		fcm_ids = []
-	
+		data_object = []
+		
 		# Selection of Vellore as the location in this sample case
 		selected_city = 'Vellore'
 		all_users = db.child("locations").child(selected_city).get()
@@ -45,11 +45,20 @@ def check_disaster():
 		for user in all_users.each():
 			fcm_ids.append(user.val())
 			
+		# Getting the users child of the database
+		all_users = db.child("users").get()
+		
+		# Getting the corresponding UIDs
+		for user in all_users.each():
+			if user.val()['device_token'] in fcm_ids:
+				data_object.append({user.key(): user.val()['device_token']}) 
+			
+		print(data_object)
+		
 		# Sending the message to multiple devices
 		message_title = random.choice(["ETH: Earthquake Alert", "FLD: Flood Alert", "FOT: Forest Fire Alert", "TND: Thunderstorm Alert"])
 		message_body = "Alert has been issued in your area. Stay careful!"
-	
-		push_service.notify_multiple_devices(registration_ids=fcm_ids, message_title=message_title, message_body=message_body)
+		result = push_service.notify_multiple_devices(registration_ids=fcm_ids, message_title=message_title, message_body=message_body)
 		
 		return 'The alert has been sent.'
 	
@@ -81,6 +90,15 @@ def check_disaster():
 			push_service.notify_multiple_devices(registration_ids=fcm_ids, message_title=message_title, message_body=message_body)
 			
 		return 'The alert has been sent.'
+
+# Function for clearing the alert systems
+@app.route("/remove_alert")
+
+def remove_alert():
+	db.child("alerted_locations").child("Vellore").remove()
+	
+	return '1'
+
 # Function for retrieving the details from Firebase
 def retrieve_data():
 	users = db.child("users").get()
@@ -170,6 +188,6 @@ if __name__ == "__main__":
 	app.run()
 
 # Starting the scheduler with the required job
-task_scheduler = BackgroundScheduler(daemon=True)
-task_scheduler.add_job(retrieve_data, 'interval', seconds=10000)
-task_scheduler.start()
+#task_scheduler = BackgroundScheduler(daemon=True)
+#task_scheduler.add_job(retrieve_data, 'interval', seconds=10000)
+#task_scheduler.start()
