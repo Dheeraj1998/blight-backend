@@ -35,7 +35,7 @@ def check_disaster():
 
 	if(sample_data == 1):
 		fcm_ids = []
-		data_object = []
+		data_object = {}
 		
 		# Selection of Vellore as the location in this sample case
 		selected_city = 'Vellore'
@@ -51,9 +51,9 @@ def check_disaster():
 		# Getting the corresponding UIDs
 		for user in all_users.each():
 			if user.val()['device_token'] in fcm_ids:
-				data_object.append({user.key(): user.val()['device_token']}) 
-			
-		print(data_object)
+				data_object[user.val()['device_token']] = user.key()
+		
+		db.child('alerted_users').set(data_object)
 		
 		# Sending the message to multiple devices
 		message_title = random.choice(["ETH: Earthquake Alert", "FLD: Flood Alert", "FOT: Forest Fire Alert", "TND: Thunderstorm Alert"])
