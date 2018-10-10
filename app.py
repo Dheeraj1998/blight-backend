@@ -51,7 +51,7 @@ def check_disaster():
 		# Getting the corresponding UIDs
 		for user in all_users.each():
 			if user.val()['device_token'] in fcm_ids:
-				data_object[user.val()['device_token']] = user.key()
+				data_object[user.key()] = user.val()['device_token']
 		
 		db.child('alerted_users').set(data_object)
 		
@@ -95,9 +95,9 @@ def check_disaster():
 @app.route("/remove_alert")
 
 def remove_alert():
-	db.child("alerted_locations").child("Vellore").remove()
+	db.child("alerted_users").remove()
 	
-	return '1'
+	return 'The alert has been cleared!'
 
 # Function for retrieving the details from Firebase
 def retrieve_data():
