@@ -96,7 +96,6 @@ def check_disaster():
 
 def remove_alert():
 	db.child("alerted_users").remove()
-	db.child("alerts").remove()
 	
 	return 'The alert has been cleared!'
 
