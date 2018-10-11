@@ -56,7 +56,7 @@ def check_disaster():
 		db.child('alerted_users').set(data_object)
 		
 		# Sending the message to multiple devices
-		message_title = random.choice(["ETH: Earthquake Alert", "FLD: Flood Alert", "FOT: Forest Fire Alert", "TND: Thunderstorm Alert"])
+		message_title = ["ETH: Earthquake Alert", "FLD: Flood Alert", "FOT: Forest Fire Alert", "TND: Thunderstorm Alert"][0]
 		message_body = "Alert has been issued in your area. Stay careful!"
 		result = push_service.notify_multiple_devices(registration_ids=fcm_ids, message_title=message_title, message_body=message_body)
 		
