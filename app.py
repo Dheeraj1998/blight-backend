@@ -50,6 +50,16 @@ def check_disaster():
 		for user in all_users.each():
 			fcm_ids.append(user.val())
 			
+		# Converting alert types
+		if (alert_type == 'ETH'):
+			alert_type = 'Earthquake'
+		elif (alert_type == 'FLD'):
+			alert_type = 'Flood'
+		elif (alert_type == 'FOT'):
+			alert_type = 'Forest Fire'
+		else:
+			alert_type = 'Thunderstorm'
+		
 		# Getting the users child of the database
 		all_users = db.child("users").get()
 		
@@ -61,7 +71,7 @@ def check_disaster():
 		db.child('alerted_users').set(data_object)
 		
 		# Sending the message to multiple devices
-		message_title = ["Alert"]
+		message_title = alert_type + " Alert"
 		message_body = "Alert has been issued in your area. Stay careful!"
 		result = push_service.notify_multiple_devices(registration_ids=fcm_ids, message_title=message_title, message_body=message_body)
 		
