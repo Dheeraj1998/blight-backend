@@ -40,6 +40,9 @@ def check_disaster():
 		# Selection of Vellore as the location in this sample case
 		selected_city = 'Vellore'
 		alert_type = request.args.get('type').upper()
+		alert_millis = request.args.get('millis')
+		alert_date = request.args.get('date')
+		alert_time = request.args.get('time')
 		
 		if alert_type not in ['ETH', 'FOT', 'FLD', 'TND']:
 			return 'Invalid alert type.'
@@ -69,6 +72,7 @@ def check_disaster():
 				data_object[user.key()] = {'device_token': user.val()['device_token'], 'alert_type': alert_type}
 		
 		db.child('alerted_users').set(data_object)
+		db.child('alert_history_log').push({'users_alerted': len(data_object), 'alert_type': alert_type, 'location': 'Vellore', 'alert_millis': int(alert_millis), 'date': alert_date, 'time': alert_time})
 		
 		# Sending the message to multiple devices
 		message_title = alert_type + " Alert"
