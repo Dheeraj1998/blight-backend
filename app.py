@@ -27,7 +27,7 @@ sample_data = 1
 app = Flask(__name__)
 
 # Function for checking any disaster
-@app.route("/check_disaster")
+@app.route("/check_disaster", methods = ["GET"])
 
 def check_disaster():
 	# Defining the server key
@@ -39,6 +39,11 @@ def check_disaster():
 		
 		# Selection of Vellore as the location in this sample case
 		selected_city = 'Vellore'
+		alert_type = request.args.get('type').upper()
+		
+		if alert_type not in ['ETH', 'FOT', 'FLD', 'TND']:
+			return 'Invalid alert type.'
+			
 		all_users = db.child("locations").child(selected_city).get()
 		
 		# Extraction of FCM ids for the particular area
@@ -51,12 +56,12 @@ def check_disaster():
 		# Getting the corresponding UIDs
 		for user in all_users.each():
 			if user.val()['device_token'] in fcm_ids:
-				data_object[user.key()] = user.val()['device_token']
+				data_object[user.key()] = {'device_token': user.val()['device_token'], 'alert_type': alert_type}
 		
 		db.child('alerted_users').set(data_object)
 		
 		# Sending the message to multiple devices
-		message_title = ["ETH: Earthquake Alert", "FLD: Flood Alert", "FOT: Forest Fire Alert", "TND: Thunderstorm Alert"][0]
+		message_title = ["Alert"]
 		message_body = "Alert has been issued in your area. Stay careful!"
 		result = push_service.notify_multiple_devices(registration_ids=fcm_ids, message_title=message_title, message_body=message_body)
 		
@@ -85,7 +90,7 @@ def check_disaster():
 			fcm_ids.append(user.val())
 	
 		if (disaster_response != '[]'):
-			message_title = "EMA: Earthquake Alert"
+			message_title = "Alert"
 			message_body = "Alert has been issued in your area. Stay careful!"
 			push_service.notify_multiple_devices(registration_ids=fcm_ids, message_title=message_title, message_body=message_body)
 			
